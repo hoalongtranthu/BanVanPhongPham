@@ -1,0 +1,66 @@
+﻿@model StationeryShop.Models.category
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <h1>Sửa thông tin hàng</h1>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-tools">
+                    <button type="button"
+                            class="btn btn-tool"
+                            data-card-widget="collapse"
+                            title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button"
+                            class="btn btn-tool"
+                            data-card-widget="remove"
+                            title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div>
+                    <h4>category</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.name)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.name)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.description)
+                        </dt>
+
+                        <dd>
+                            @Html.Raw(Model.description)
+                        </dd>
+
+                    </dl>
+                </div>
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+                    @Html.ActionLink("Back to List", "Index")
+                </p>
+            </div>
+        </div>
+    </section>
+</div>
+

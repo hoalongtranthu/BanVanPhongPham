@@ -1,0 +1,145 @@
+﻿@model IEnumerable<StationeryShop.Models.promotion>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <h1>Danh sách các khuyến mại</h1>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">Tìm kiếm</h3>
+                <div class="card-tools">
+                    <button type="button"
+                            class="btn btn-tool"
+                            data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button"
+                            class="btn btn-tool"
+                            data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <form method="post" action="/Admin/promotions/Index">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                <label>Mã khuyến mãi</label>
+                                <input value="@ViewBag.id" type="number" placeholder="Mã KM..." name="id" class="form-control" />
+                                <p style="color:red">@ViewBag.msg</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                <label>Tên khuyến mãi</label>
+                                <input value="@ViewBag.name" type="text" class="form-control" placeholder="Tên KM..." name="name" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-8 align-self-end">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-search"></i> Tìm kiếm
+                                </button>
+                                <a href="/Admin/promotions" class="btn btn-secondary">
+                                    <i class="fas fa-redo"></i> Làm mới
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-tools">
+                    <button type="button"
+                            class="btn btn-tool"
+                            data-card-widget="collapse"
+                            title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button"
+                            class="btn btn-tool"
+                            data-card-widget="remove"
+                            title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.image)</th>
+                                <th>@Html.DisplayNameFor(model => model.id)</th>
+                                <th>@Html.DisplayNameFor(model => model.name)</th>
+                                <th>@Html.DisplayNameFor(model => model.from_date)</th>
+                                <th>@Html.DisplayNameFor(model => model.to_date)</th>
+                                <th>@Html.DisplayNameFor(model => model.description)</th>
+                                <th>@Html.DisplayNameFor(model => model.content)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td><img src="@item.image" alt="no image" width="20"></td>
+                                    <td>@item.id</td>
+                                    <td>
+                                        @item.name
+                                    </td>
+                                    <td>@item.from_date</td>
+                                    <td>@item.to_date</td>
+                                    <td>@item.description</td>
+                                    <td>@item.content</td>
+                                    <td>
+                                        <a class="btn btn-primary btn-sm" href="/Admin/promotions/Edit/@item.id">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary btn-sm" href="/Admin/promotions/Delete/@item.id"
+                                           onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary btn-sm" href="/Admin/promotions/Details/@item.id">
+                                            <i class="fas fa-eye"> </i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <div class="product-status-wrap">
+                <div class="add-promotions">
+                    <a href="/Admin/promotions/Create">Tạo mới sản phẩm</a>
+                </div>
+            </div>
+        </div>
+        <!-- /.card -->
+    </section>
+    <!-- /.content -->
+</div>

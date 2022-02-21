@@ -1,0 +1,26 @@
+﻿@model StationeryShop.Models.promotion
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="bg-white p-3">
+	<h2 class="heading">@Model.name</h2>
+	<h5 class="text-secondary">@Model.description</h5>
+	<h6 class="text-muted">
+		<i class="bx bx-time"></i>
+		Chương trình áp dụng từ ngày @Model.from_date.ToShortDateString() đến hết ngày @Model.to_date.ToShortDateString()
+	</h6>
+	<img class="img-fluid d-block mb-2" src="@Model.image" />
+	<h3 class="text-secondary">Nội dung chương trình</h3>
+	<p>@Html.Raw(Model.content)</p>
+	<h3 class="text-secondary">Các sản phẩm được khuyến mại</h3>
+	<ul>
+		@foreach(var pd in Model.promotion_details)
+		{
+			<li>
+				<a href="/Product/Index/@pd.prod_id">@pd.product.name</a> (@pd.discount% giảm)
+			</li>
+		}
+	</ul>
+</div>
+

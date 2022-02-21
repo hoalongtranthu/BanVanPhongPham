@@ -1,0 +1,36 @@
+﻿@model IEnumerable<StationeryShop.Models.product>
+<div class="row g-2">
+	@foreach (var p in Model)
+	{
+		<div class="col-xs-12 col-sm-6 col-lg-4">
+			<div class="product-card">
+				<a href="/Product/Index/@p.id" class="product-card__img">
+					<img src="@p.image"
+							 alt="img" />
+				</a>
+				<hr />
+				@if (p.Discount > 0)
+				{
+					<span class="product-card__sale badge rounded-pill bg-danger">@p.Discount% GIẢM</span>
+				}
+				<a class="product-card__name" href="/Product/Index/@p.id">@p.name</a>
+				<div class="product-card__bottom">
+					<div class="product-card__price">
+						@if (p.Discount > 0)
+						{
+							<span class="product-card__price--old">@p.price.ToString("n0")đ</span>
+							<span>@p.PromoPrice.ToString("n0")đ</span>
+						}
+						else
+						{
+							<span>@p.price.ToString("n0")đ</span>
+						}
+					</div>
+					<a class="product-card__actions" href="/Cart/Add/@p.id">
+						<i class="bx bx-shopping-bag bx-sm"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	}
+</div>

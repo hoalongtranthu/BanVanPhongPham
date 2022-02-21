@@ -1,0 +1,99 @@
+﻿@model List<StationeryShop.Models.cart>
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_LayoutWithoutSidebar.cshtml";
+}
+
+<div class="cart">
+	<div class="container">
+		<h1 class="heading">GIỎ HÀNG</h1>
+		@if (Model.Count == 0)
+		{
+			<p>
+				Chưa có hàng trong giỏ. Mua thêm sản phẩm <a href="/"><strong>Tại đây</strong></a>
+			</p>
+		}
+		else
+		{
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead class="table-primary">
+						<tr>
+							<th>#</th>
+							<th>Hình ảnh</th>
+							<th>Tên sản phẩm</th>
+							<th>Đơn giá</th>
+							<th>Đơn vị tính</th>
+							<th>Số lượng</th>
+							<th>Thành tiền</th>
+							<th>Xóa</th>
+						</tr>
+					</thead>
+					<tbody>
+						@for (int i = 0; i < Model.Count; i++)
+						{
+							<tr id="prod-@Model[i].prod_id">
+								<td>@(i+1)</td>
+								<td>
+									<img src="@Model[i].product.image"
+											 alt="img"
+											 class="img-fluid"
+											 width="80" />
+								</td>
+								<td>@Model[i].product.name</td>
+								<td>
+									@if (Model[i].product.Discount > 0)
+									{
+										<del>@Model[i].product.price.ToString("n0")đ</del>
+										<span id="p-@Model[i].prod_id" data-price="@Model[i].product.PromoPrice">@Model[i].product.PromoPrice.ToString("n0")đ</span>
+									}
+									else
+									{
+										<span id="p-@Model[i].prod_id" data-price="@Model[i].product.price">@Model[i].product.price.ToString("n0")đ</span>
+									}
+								</td>
+								<td>@Model[i].product.unit</td>
+								<td class="text-nowrap">
+									<input onchange="updateQuantity(event)" data-id="@Model[i].prod_id" class="form-control d-inline-block" style="width: 8ch;" value="@Model[i].quantity" type="number" min="1"/>
+								</td>
+								<td id="tp-@Model[i].prod_id" data-tp="@Model[i].total">@Model[i].total.ToString("n0")đ</td>
+								<td>
+									<a href="/Cart/Delete/@Model[i].prod_id" class="btn btn-danger">
+										<i class="bx bx-trash"></i>
+									</a>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+			<div class="text-end">
+				Tổng cộng: <strong class="text-danger" id="total">@ViewBag.total.ToString("n0")đ</strong>
+			</div>
+			<div class="cart-actions">
+				<a class="btn btn-primary" href="/Order/Address">Thanh toán</a>
+				<a class="btn btn-secondary" href="/">Tiếp tục mua hàng</a>
+			</div>
+		}
+	</div>
+</div>
+
+<script>
+	function calculateTotal() {
+		const total = [...document.querySelectorAll("td[data-tp]")].reduce((s, c) => s + parseInt(c.dataset.tp), 0);
+		document.querySelector("#total").textContent = `${total.toLocaleString()}đ`;
+	}
+	async function updateQuantity(e) {
+		const body = new FormData();
+		const newQtt = Math.max(parseInt(e.target.value), 1);
+		e.target.value = newQtt;
+		const id = e.target.dataset.id;
+		const price = parseInt(document.querySelector(`#p-${id}`).dataset.price);
+		body.append("qtt", newQtt);
+		await fetch(`/Cart/ChangeQuantity/${id}`, { method: "post", body });
+		const tp = document.querySelector(`#tp-${id}`);
+		tp.textContent = `${(price * newQtt).toLocaleString()}đ`;
+		tp.dataset.tp = price * newQtt;
+		calculateTotal();
+	}
+</script>

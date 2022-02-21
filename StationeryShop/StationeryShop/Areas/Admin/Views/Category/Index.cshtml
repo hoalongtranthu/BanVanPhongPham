@@ -1,0 +1,86 @@
+﻿@model IEnumerable<StationeryShop.Models.category>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <h1>Sửa thông tin hàng</h1>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-tools">
+                    <button type="button"
+                            class="btn btn-tool"
+                            data-card-widget="collapse"
+                            title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button"
+                            class="btn btn-tool"
+                            data-card-widget="remove"
+                            title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <p>
+                    @Html.ActionLink("Create New", "Create") || <a href="/Admin/Product" class="btn btn-secondary"><i class="fas fa-redo"></i> Làm mới</a>
+                </p>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.description)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.name)
+                            </td>
+                            <td>
+                                @Html.Raw(item.description)
+                            </td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="/Admin/Category/Edit/@item.id">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+
+                            </td>
+
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="/Admin/Category/Details/@item.id">
+                                    <i class="fas fa-eye"> </i>
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="/Admin/Category/Delete/@item.id"
+                                   onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </section>
+</div>
+

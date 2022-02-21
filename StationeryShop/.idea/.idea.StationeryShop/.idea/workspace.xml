@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ff67c2c2-3801-4543-8961-9b1ddb593103" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/StationeryShop/Controllers/CartController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/StationeryShop/Areas/Admin/Views/Dashboard/Index.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/StationeryShop/Areas/Admin/Controllers/DashboardController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/35564249-115A-4714-BA88-A9A6C681950B/76/45705f16/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/StationeryShop/Views/Product/Index.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/StationeryShop/Areas/Admin/Controllers/DashboardController.cs" />
+        <option value="$PROJECT_DIR$/StationeryShop/Areas/Admin/Views/Dashboard/Index.cshtml" />
+        <option value="$PROJECT_DIR$/StationeryShop/Views/Product/Index.cshtml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="22H9DGviJTrkVU9R1fllGOQS8o7" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.SolutionExplorerActivator" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RunManager">
+    <configuration name="StationeryShop" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/StationeryShop/StationeryShop.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="Web" />
+      <option name="PROJECT_TFM" value="" />
+      <browser url="http://localhost:54916/" start="true" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ff67c2c2-3801-4543-8961-9b1ddb593103" name="Default Changelist" comment="" />
+      <created>1639483523621</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1639483523621</updated>
+      <workItem from="1639483524997" duration="7659000" />
+      <workItem from="1639527104719" duration="2667000" />
+      <workItem from="1639547232132" duration="12120000" />
+      <workItem from="1639571588015" duration="2165000" />
+      <workItem from="1639574792772" duration="459000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="453" height="459" key="DebuggerActiveHint" timestamp="1639554340677">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="453" height="459" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1639554340677" />
+    <state width="1493" height="158" key="GridCell.Tab.0.bottom" timestamp="1639574333088">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="158" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1639574333088" />
+    <state width="1493" height="158" key="GridCell.Tab.0.center" timestamp="1639574333088">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="158" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1639574333088" />
+    <state width="1493" height="158" key="GridCell.Tab.0.left" timestamp="1639574333088">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="158" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1639574333088" />
+    <state width="1493" height="158" key="GridCell.Tab.0.right" timestamp="1639574333088">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="158" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1639574333088" />
+    <state width="1493" height="167" key="GridCell.Tab.1.bottom" timestamp="1639559443496">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1639559443496" />
+    <state width="1493" height="167" key="GridCell.Tab.1.center" timestamp="1639559443496">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1639559443496" />
+    <state width="1493" height="167" key="GridCell.Tab.1.left" timestamp="1639559443496">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1639559443496" />
+    <state width="1493" height="167" key="GridCell.Tab.1.right" timestamp="1639559443496">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1639559443496" />
+    <state width="1493" height="167" key="GridCell.Tab.2.bottom" timestamp="1639559443496">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1639559443496" />
+    <state width="1493" height="167" key="GridCell.Tab.2.center" timestamp="1639559443496">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1639559443496" />
+    <state width="1493" height="167" key="GridCell.Tab.2.left" timestamp="1639559443496">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1639559443496" />
+    <state width="1493" height="167" key="GridCell.Tab.2.right" timestamp="1639559443496">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1639559443496" />
+    <state width="1493" height="167" key="GridCell.Tab.3.bottom" timestamp="1639559443496">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.3.bottom/0.0.1536.834@0.0.1536.834" timestamp="1639559443496" />
+    <state width="1493" height="167" key="GridCell.Tab.3.center" timestamp="1639559443496">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.3.center/0.0.1536.834@0.0.1536.834" timestamp="1639559443496" />
+    <state width="1493" height="167" key="GridCell.Tab.3.left" timestamp="1639559443496">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.3.left/0.0.1536.834@0.0.1536.834" timestamp="1639559443496" />
+    <state width="1493" height="167" key="GridCell.Tab.3.right" timestamp="1639559443496">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.3.right/0.0.1536.834@0.0.1536.834" timestamp="1639559443496" />
+    <state width="1493" height="167" key="GridCell.Tab.4.bottom" timestamp="1639559443496">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.4.bottom/0.0.1536.834@0.0.1536.834" timestamp="1639559443496" />
+    <state width="1493" height="167" key="GridCell.Tab.4.center" timestamp="1639559443496">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.4.center/0.0.1536.834@0.0.1536.834" timestamp="1639559443496" />
+    <state width="1493" height="167" key="GridCell.Tab.4.left" timestamp="1639559443496">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.4.left/0.0.1536.834@0.0.1536.834" timestamp="1639559443496" />
+    <state width="1493" height="167" key="GridCell.Tab.4.right" timestamp="1639559443496">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="167" key="GridCell.Tab.4.right/0.0.1536.834@0.0.1536.834" timestamp="1639559443496" />
+    <state x="279" y="63" key="SettingsEditor" timestamp="1639485160573">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="279" y="63" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1639485160573" />
+  </component>
+</project>

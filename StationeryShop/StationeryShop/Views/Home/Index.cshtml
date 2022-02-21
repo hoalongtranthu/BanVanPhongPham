@@ -1,0 +1,10 @@
+﻿@{
+	ViewBag.Title = "Home Page";
+}
+<h2 class="heading">Giảm giá sốc</h2>
+@Html.Partial("_ProductList", (IEnumerable<StationeryShop.Models.product>)ViewBag.proProds)
+<h2 class="heading mt-2">Bán chạy</h2>
+@Html.Partial("_ProductList", (IEnumerable<StationeryShop.Models.product>)ViewBag.topProds)
+
+<h2 class="heading mt-2">Sản phẩm mới</h2>
+@Html.Partial("_ProductList", (IEnumerable<StationeryShop.Models.product>)ViewBag.newProds)

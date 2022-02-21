@@ -1,0 +1,119 @@
+﻿@model StationeryShop.Models.product
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <h1>Chi tiết sản phẩm</h1>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-tools">
+                    <button type="button"
+                            class="btn btn-tool"
+                            data-card-widget="collapse"
+                            title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button"
+                            class="btn btn-tool"
+                            data-card-widget="remove"
+                            title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="container mt-3">
+                    <div class="bg-white p-3">
+                        <h2 class="heading">@Model.name</h2>
+                        <div class="row g-3">
+                            <div class="col-xs-12 col-md-4">
+                                <div class="product-intro__img">
+                                    <img src="@Model.image"
+                                         alt="img" width="150"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <div class="product-intro__overview">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th>Mã sản phẩm</th>
+                                            <td>@Model.id</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Xuất xứ</th>
+                                            <td>@Model.origin</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Đơn vị tính</th>
+                                            <td>@Model.unit</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tình trạng</th>
+                                            <td>
+                                                @if (Model.amount > 0)
+                                                {
+                                                    <span class="text-success">
+                                                        <i class="bx bx-badge-check bx-sm text-success"></i>
+                                                        Còn hàng
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-warning">
+                                                        <i class="bx bx-hand bx-sm text-warning"></i>
+                                                        Hết hàng
+                                                    </span>
+                                                }
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <p class="text-danger fs-3">
+                                        @if (Model.Discount > 0)
+                                        {
+                                            <del>@Model.price.ToString("n0")đ</del>
+                                            <strong>@Model.PromoPrice.ToString("n0")đ</strong>
+                                        }
+                                        else
+                                        {
+                                            <strong>@Model.price.ToString("n0")đ</strong>
+                                        }
+                                    </p>
+                                    <p>
+                                        <a class="btn btn-primary btn-sm" href="/Admin/Product/Update/@Model.id">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <td>
+                                            <a class="btn btn-primary btn-sm" href="/Admin/Product/Delete/@Model.id"
+                                               onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <div class="bg-white p-3">
+                                    <h2 class="heading">Chi tiết sản phẩm</h2>
+                                    <p>
+                                        @Html.Raw(Model.description)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

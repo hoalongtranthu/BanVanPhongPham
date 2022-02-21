@@ -1,0 +1,59 @@
+﻿@model StationeryShop.Models.order
+@{
+    ViewBag.Title = "Address";
+    Layout = "~/Views/Shared/_LayoutWithoutSidebar.cshtml";
+}
+<div class="form-address">
+	<div class="container">
+		<h1>THÔNG TIN GIAO HÀNG</h1>
+		<ul class="stepper">
+			<li class="stepper-active">
+				<div class="stepper-number">1</div>
+				<div class="stepper-label">Địa chỉ giao hàng</div>
+			</li>
+			<li>
+				<div class="stepper-number">2</div>
+				<div class="stepper-label">Thanh toán</div>
+			</li>
+		</ul>
+		<div class="form-wrapper">
+			<h2>Thêm địa chỉ giao hàng</h2>
+			<form action="/Order/AddAddress" method="post">
+				<div class="input-group mb-3">
+					<span class="input-group-text">
+						<i class="bx bx-user"></i>
+					</span>
+					<input type="text"
+								 class="form-control"
+								 placeholder="Họ tên..."
+								 name="name"
+								 value="@Model.name"
+								 required />
+				</div>
+				<div class="input-group mb-3">
+					<span class="input-group-text">
+						<i class="bx bx-phone"></i>
+					</span>
+					<input type="tel"
+								 class="form-control"
+								 placeholder="Số điện thoại..."
+								 name="tel"
+								 value="@Model.tel"
+								 required />
+				</div>
+				<div class="input-group mb-3">
+					<span class="input-group-text">
+						<i class="bx bx-home"></i>
+					</span>
+					<input type="text"
+								 class="form-control"
+								 placeholder="Địa chỉ..."
+								 name="address"
+								 value="@Model.address"
+								 required />
+				</div>
+				<button type="submit" class="btn btn-primary">Tiếp tục</button>
+			</form>
+		</div>
+	</div>
+</div>

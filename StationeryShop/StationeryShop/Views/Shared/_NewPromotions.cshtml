@@ -1,0 +1,15 @@
+﻿@model IEnumerable<StationeryShop.Models.promotion>
+<div class="list-group mt-3">
+	<a href="#" class="list-group-item list-group-item-action active">Tin khuyến mãi</a>
+	@foreach (var p in Model)
+	{
+		<a href="/Promotion/Index/@p.id"
+			 class="list-group-item list-group-item-action blog-post clearfix">
+			<div class="blog-post__img">
+				<img src="@p.image" alt="img" />
+			</div>
+			<h4>@p.name</h4>
+			<p>@p.description</p>
+		</a>
+	}
+</div>

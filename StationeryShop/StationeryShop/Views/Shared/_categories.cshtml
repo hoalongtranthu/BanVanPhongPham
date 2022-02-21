@@ -1,0 +1,13 @@
+﻿@model IEnumerable<StationeryShop.Models.category>
+
+<ul class="list-group">
+	<li class="list-group-item d-flex align-items-center fw-bold">
+		<i class="bx bx-menu bx-sm me-2"></i>
+		DANH MỤC SẢN PHẨM
+	</li>
+	@foreach (var cat in Model)
+	{
+		bool isActive = cat.id.ToString() == ViewContext.RouteData.Values["id"]?.ToString();
+		@Html.ActionLink(cat.name, "Index", "Category", new { id = cat.id }, new { @class = "list-group-item list-group-item-action" + (isActive ? " active" : "") })
+	}
+</ul>

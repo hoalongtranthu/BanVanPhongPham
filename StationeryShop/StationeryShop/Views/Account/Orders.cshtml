@@ -1,0 +1,51 @@
+﻿@model List<StationeryShop.Models.order>
+@{
+	ViewBag.Title = "MyOrders";
+	Layout = "~/Views/Shared/_LayoutWithoutSidebar.cshtml";
+}
+<div class="account-info">
+	<div class="container">
+		<h1>THÔNG TIN TÀI KHOẢN</h1>
+		<div class="row">
+			<div class="col-12 col-md-4">
+				@{ Html.RenderAction("AccountMenu");}
+			</div>
+			<div class="col-12 col-md-8">
+				<div class="order-table">
+					<h2>ĐƠN HÀNG CỦA TÔI</h2>
+					@if (Model.Count==0)
+					{
+						<p>Bạn chưa có đơn hàng nào!</p>
+					}
+					else
+					{
+						<p>Danh sách đơn hàng đã đặt</p>
+						<table class="table table-striped">
+							<thead class="table-primary">
+								<tr>
+									<th>#</th>
+									<th>Ngày yêu cầu</th>
+									<th>Yêu cầu</th>
+									<th>Tổng tiền</th>
+									<th>Tình trạng</th>
+								</tr>
+							</thead>
+							<tbody>
+								@for (int i = 0; i < Model.Count; i++)
+								{
+									<tr>
+										<td>@(i+1)</td>
+										<td>@Model[i].order_date.ToShortDateString()</td>
+										<td>@Model[i].notes</td>
+										<td>@Model[i].total.ToString("n0")đ</td>
+										<td>@Model[i].status</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,393 @@
+﻿@using StationeryShop.Models
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+	<div class="container-fluid">
+		<h1>Dashboard</h1>
+	</div>
+	<!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+<!-- Default box -->
+<!-- Statistic -->
+<div class="row">
+	<div class="col-xs-12 col-md-3">
+		<div class="small-box bg-info">
+			<div class="inner">
+				<h3>@ViewBag.orderCount</h3>
+				<p>Đơn hàng</p>
+			</div>
+			<div class="icon">
+				<i class="fas fa-shopping-cart"></i>
+			</div>
+			<a href="/Admin/Order" class="small-box-footer">
+				Chi tiết
+				<i class="fas fa-arrow-circle-right">
+				</i
+				>
+			</a>
+		</div>
+	</div>
+	<div class="col-xs-12 col-md-3">
+		<div class="small-box bg-success">
+			<div class="inner">
+				<h3>@ViewBag.customerCount</h3>
+				<p>Khách hàng</p>
+			</div>
+			<div class="icon">
+				<i class="fas fa-users"></i>
+			</div>
+			<a href="/Admin/Customers" class="small-box-footer">
+				Chi tiết
+				<i class="fas fa-arrow-circle-right">
+				</i
+				>
+			</a>
+		</div>
+	</div>
+	<div class="col-xs-12 col-md-3">
+		<div class="small-box bg-warning">
+			<div class="inner">
+				<h3>@ViewBag.productCount</h3>
+				<p>Sản phẩm</p>
+			</div>
+			<div class="icon">
+				<i class="fas fa-store"></i>
+			</div>
+			<a href="/Admin/Product" class="small-box-footer">
+				Chi tiết
+				<i class="fas fa-arrow-circle-right">
+				</i
+				>
+			</a>
+		</div>
+	</div>
+	<div class="col-xs-12 col-md-3">
+		<div class="small-box bg-danger">
+			<div class="inner">
+				<h3>@ViewBag.totalSale.ToString("n0")</h3>
+				<p>Doanh thu</p>
+			</div>
+			<div class="icon">
+				<i class="fas fa-dollar-sign"></i>
+			</div>
+			<a href="/Admin/Order" class="small-box-footer">
+				Chi tiết
+				<i class="fas fa-arrow-circle-right">
+				</i
+				>
+			</a>
+		</div>
+	</div>
+</div>
+<!-- Chart -->
+<div class="card">
+	<div class="card-header">
+		<h3 class="card-title"><i class="fas fa-chart-line"></i> Biểu đồ doanh thu</h3>
+		<div class="card-tools">
+			<button
+				type="button"
+				class="btn btn-tool"
+				data-card-widget="collapse">
+				<i class="fas fa-minus"></i>
+			</button>
+			<button
+				type="button"
+				class="btn btn-tool"
+				data-card-widget="remove">
+				<i class="fas fa-times"></i>
+			</button>
+		</div>
+	</div>
+	<div class="card-body">
+		<div class="chart">
+			<canvas
+				id="chart"
+				style="
+                    min-height: 250px;
+                    height: 250px;
+                    max-height: 250px;
+                    max-width: 100%;
+                  ">
+			</canvas>
+		</div>
+	</div>
+	<!-- /.card-body -->
+	<div class="card-footer">
+		<div class="row">
+			<div class="col-xs-12 col-md-6">
+				<ul class="nav nav-pills">
+					<li class="nav-item">
+						<button data-chart-filter="day" class="nav-link active btn">Theo ngày</button>
+					</li>
+					<li class="nav-item">
+						<button data-chart-filter="month" class="nav-link btn">Theo tháng</button>
+					</li>
+					<li class="nav-item">
+						<button data-chart-filter="year" class="nav-link btn">Theo năm</button>
+					</li>
+				</ul>
+			</div>
+			@{ var today = DateTime.Now; }
+			<div class="col-xs-12 col-md-6 text-right mt-2 mt-md-0">
+				<div class="d-inline-block mr-2" id="month">
+					<label class="mr-2">Tháng</label>
+					@Html.DropDownList("month", Enumerable.Range(1, 12).Select(m => new SelectListItem()
+					{
+						Value = m.ToString(), Text
+							= m.ToString(),
+						Selected = today.Month == m
+					}), new {@class = "custom-select w-auto", id = "monthInput"})
+				</div>
+				<div class="d-inline-block mr-2" id="year">
+					<label class="mr-2">Năm</label>
+					@Html.DropDownList("year", Enumerable.Range(2019,6).Select(y => new SelectListItem()
+					{
+						Value = y.ToString(), Text
+							= y.ToString(),
+						Selected = today.Year == y
+					}), new {@class = "custom-select w-auto", id = "yearInput"})
+				</div>
+				<button class="btn btn-primary" onclick="showChart()">Xem</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /.card -->
+<!-- New orders & new customer -->
+<div class="row">
+	<!-- New orders -->
+	<div class="col-xs-12 col-md-6">
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">Đơn hàng mới</h3>
+				<div class="card-tools">
+					<button
+						type="button"
+						class="btn btn-tool"
+						data-card-widget="collapse">
+						<i class="fas fa-minus"></i>
+					</button>
+					<button
+						type="button"
+						class="btn btn-tool"
+						data-card-widget="remove">
+						<i class="fas fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<div class="card-body p-0">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+						<tr>
+							<th>#</th>
+							<th>Mã đơn hàng</th>
+							<th>Khách hàng</th>
+							<th>Ngày đặt</th>
+							<th>Tổng đơn</th>
+							<th></th>
+						</tr>
+						</thead>
+						<tbody>
+						@{ var newOrders = (List<order>) ViewBag.newOrders;}
+						@for (int i=0;i<newOrders.Count;i++)
+						{
+							var o = newOrders[i];
+							<tr>
+								<td>@(i+1)</td>
+								<td>@o.id</td>
+								<td>
+									<a href="/Admin/Customers/Details/@o.cus_id">@o.customer.name</a>
+								</td>
+								<td>@o.order_date.ToShortDateString()</td>
+								<td>@o.total.ToString("n0")đ</td>
+								<td>
+									<a class="btn btn-primary btn-sm" href="/Admin/Order/Detail/@o.id">
+										<i class="fas fa-eye"> </i>
+									</a>
+								</td>
+							</tr>
+						}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- /.card-body -->
+		</div>
+	</div>
+	<!-- New customer -->
+	<div class="col-xs-12 col-md-6">
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">Khách hàng mới</h3>
+				<div class="card-tools">
+					<button
+						type="button"
+						class="btn btn-tool"
+						data-card-widget="collapse">
+						<i class="fas fa-minus"></i>
+					</button>
+					<button
+						type="button"
+						class="btn btn-tool"
+						data-card-widget="remove">
+						<i class="fas fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<div class="card-body p-0">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+						<tr>
+							<th>#</th>
+							<th>Mã khách hàng</th>
+							<th>Họ tên</th>
+							<th>Địa chỉ</th>
+							<th>Số điện thoại</th>
+							<th></th>
+						</tr>
+						</thead>
+						<tbody>
+						@{ var newCustomers = (List<customer>) ViewBag.newCustomers;}
+						@for (int i = 0; i < newCustomers.Count; i++)
+						{
+							var c = newCustomers[i];
+							<tr>
+								<td>@(i+1)</td>
+								<td>@c.id</td>
+								<td>
+									@c.name
+								</td>
+								<td>@c.address</td>
+								<td>@c.tel</td>
+								<td>
+									<a class="btn btn-primary btn-sm" href="/Admin/Customers/Details/@c.id">
+										<i class="fas fa-eye"> </i>
+									</a>
+								</td>
+							</tr>
+						}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- /.card-body -->
+		</div>
+	</div>
+</div>
+</section>
+<!-- /.content -->
+</div>
+
+@section scripts
+{
+	<script src="~/Content/admin/plugin/chart.js/Chart.min.js"></script>
+	<script>
+	let chartFilter="day";
+	showChart();
+	async function showChart() {
+		const year=document.querySelector("#yearInput").value;
+		const month=document.querySelector("#monthInput").value;
+		const params=new URLSearchParams();
+		if(chartFilter=="day" || chartFilter=="month"){
+			params.append("year",year);
+			if(chartFilter=="day"){
+				params.append("month",month);
+			}
+		}
+		const data = await (await fetch("/Admin/Dashboard/SaleData?" + params.toString())).json();
+		if(chartFilter=="day"){
+			renderChart(Array.from({length:data.dayCount},(_,i)=>i+1),data.data);
+		} else if(chartFilter=="month"){
+			renderChart(Array.from({length:12},(_,i)=>i+1),data.data);
+		} else {
+			renderChart(data.years,data.data);
+		}
+	}
+	function renderChart(labels,data){
+              var chart = $("#chart").get(0).getContext("2d");
+              var chartData = {
+                labels,
+                datasets: [
+                  {
+                    label: "Doanh thu",
+                    backgroundColor: "rgba(60,141,188,0.9)",
+                    borderColor: "rgba(60,141,188,0.8)",
+                    pointRadius: false,
+                    pointColor: "#3b8bba",
+                    pointStrokeColor: "rgba(60,141,188,1)",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(60,141,188,1)",
+                    data
+                  },
+                ],
+              };
+        
+              var chartOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                legend: {
+                  display: false,
+                },
+                scales: {
+                  xAxes: [
+                    {
+                      gridLines: {
+                        display: false,
+                      },
+                    },
+                  ],
+                  yAxes: [
+                    {
+                      gridLines: {
+                        display: false,
+                      },
+                    },
+                  ],
+                },
+              };
+        
+              new Chart(chart, {
+                type: "line",
+                data: chartData,
+                options: chartOptions,
+              });
+	}
+	  document.querySelectorAll("button[data-chart-filter]").forEach(e=>{
+	    e.addEventListener("click",evt => {
+	      chartFilter=evt.target.dataset.chartFilter;
+	      const yearElm=document.querySelector("#year");
+	      const monthElm=document.querySelector("#month");
+	      const hideElm=elm=>{
+	      	elm.classList.remove("d-inline-block");
+	      	elm.classList.add("d-none");
+	      }
+	      const showElm=elm=>{
+	      	elm.classList.remove("d-none");
+	      	elm.classList.add("d-inline-block");
+	      }
+	      if(chartFilter=="year"){
+	        hideElm(yearElm);
+	        hideElm(monthElm);
+	      } else if(chartFilter=="month"){
+	        showElm(yearElm);
+	        hideElm(monthElm);
+	      } else {
+	        showElm(yearElm);
+	        showElm(monthElm);
+	      }
+	      document.querySelectorAll("button[data-chart-filter]").forEach(btn=>btn.classList.remove("active"));
+	      evt.target.classList.add("active");
+	    });
+	  })
+	</script>
+}

@@ -1,0 +1,134 @@
+﻿@using StationeryShop.Models;
+@model List<order>
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section styles{
+	<link rel="stylesheet"
+				href="~/Content/admin/plugin/daterangepicker/daterangepicker.css" />
+}
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<div class="container-fluid">
+			<h1>Đơn đặt hàng</h1>
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+
+	<!-- Main content -->
+	<section class="content">
+		<!-- Default box -->
+		<!-- Search -->
+		<div class="card card-default">
+			<div class="card-header">
+				<h3 class="card-title">Tìm kiếm</h3>
+				<div class="card-tools">
+					<button type="button"
+									class="btn btn-tool"
+									data-card-widget="collapse">
+						<i class="fas fa-minus"></i>
+					</button>
+					<button type="button"
+									class="btn btn-tool"
+									data-card-widget="remove">
+						<i class="fas fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body">
+				@using (Ajax.BeginForm("Search", new AjaxOptions
+				{
+					HttpMethod = "Post",
+					InsertionMode = InsertionMode.Replace,
+					LoadingElementId = "loader",
+					UpdateTargetId = "orderTable"
+				}))
+				{
+					<div class="row">
+						<div class="col-xs-12 col-md-4">
+							<div class="form-group">
+								<label>Mã đơn hàng</label>
+								<input value="@ViewBag.sId" type="number" placeholder="Mã đơn hàng..." name="id" class="form-control" />
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-4">
+							<div class="form-group">
+								<label>Người nhận</label>
+								<input value="@ViewBag.sName" type="text" class="form-control" placeholder="Họ tên người nhận..." name="name" />
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-4">
+							<div class="form-group">
+								<label>Ngày đặt:</label>
+								<input type="text" value="@ViewBag.sDate"
+											 class="form-control float-right"
+											 id="date" name="date" />
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-4">
+							<div class="form-group">
+								<label>Trạng thái</label>
+								@Html.DropDownList("status", new SelectList(new List<string>() { "", order.Status.ACCEPTED, order.Status.CANCELED, order.Status.DELIVERED, order.Status.DELIVERING, order.Status.DENIED, order.Status.PENDING }, ViewBag.sStatus), new { @class = "custom-select" })
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-8 align-self-end">
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary">
+									<i class="fas fa-search"></i> Tìm kiếm
+								</button>
+								<a href="/Admin/Order" class="btn btn-secondary">
+									<i class="fas fa-redo"></i> Làm mới
+								</a>
+							</div>
+						</div>
+					</div>
+				}
+			</div>
+			<!-- /.card-body -->
+		</div>
+		<!-- List -->
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">Đơn đặt hàng</h3>
+
+				<div class="card-tools">
+					<button type="button"
+									class="btn btn-tool"
+									data-card-widget="collapse"
+									title="Collapse">
+						<i class="fas fa-minus"></i>
+					</button>
+					<button type="button"
+									class="btn btn-tool"
+									data-card-widget="remove"
+									title="Remove">
+						<i class="fas fa-times"></i>
+					</button>
+				</div>
+			</div>
+			<div class="card-body p-0">
+				<div class="alert" id="loader" style="display:none;">Loading...</div>
+				<div class="table-responsive">
+					@Html.Partial("OrderTable")
+				</div>
+			</div>
+			<!-- /.card-body -->
+		</div>
+		<!-- /.card -->
+	</section>
+	<!-- /.content -->
+</div>
+
+@section scripts{
+	<script src="~/Content/admin/plugin/moment/moment.min.js"></script>
+	<script src="~/Content/admin/plugin/daterangepicker/daterangepicker.js"></script>
+	<script>
+		$("#date").daterangepicker({ autoUpdateInput: false }, (fromDate, toDate) => {
+			$("#date").val(`${fromDate.format("DD/MM/yyyy")}-${toDate.format("DD/MM/yyyy")}`);
+		});
+	</script>
+	<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}

@@ -1,0 +1,150 @@
+﻿@model PagedList.IPagedList<StationeryShop.Models.product>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <h1>Danh sách các sản phẩm</h1>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">Tìm kiếm</h3>
+                <div class="card-tools">
+                    <button type="button"
+                            class="btn btn-tool"
+                            data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button"
+                            class="btn btn-tool"
+                            data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <form method="post" action="/Admin/Product/Index">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                <label>Mã sản phẩm</label>
+                                <input value="@ViewBag.id" type="number" placeholder="Mã sản phẩm..." name="id" class="form-control" />
+                                <p style="color:red">@ViewBag.msg</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                <label>Tên sản phẩm</label>
+                                <input value="@ViewBag.name" type="text" class="form-control" placeholder="Tên sản phẩm..." name="name" />
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-8 align-self-end">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-search"></i> Tìm kiếm
+                                </button>
+                                <a href="/Admin/Product" class="btn btn-secondary">
+                                    <i class="fas fa-redo"></i> Làm mới
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-tools">
+                    <button type="button"
+                            class="btn btn-tool"
+                            data-card-widget="collapse"
+                            title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button"
+                            class="btn btn-tool"
+                            data-card-widget="remove"
+                            title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ảnh</th>
+                                <th>Id</th>
+                                <th>Danh mục</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Xuất xứ</th>
+                                <th>Giá cả</th>
+                                <th>SL còn</th>
+                                <th>DV tính</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                <tr>
+                                    <td>@(i+1)</td>
+                                    <td><img src="@Model[i].image" alt="no image" width="20"></td>
+                                    <td>@Model[i].id</td>
+                                    <td>
+                                        @Model[i].category.name
+                                    </td>
+                                    <td>@Model[i].name</td>
+                                    <td>@Model[i].origin</td>
+                                    <td>@Model[i].price</td>
+                                    <td>@Model[i].amount</td>
+                                    <td>@Model[i].unit</td>
+                                    <td>
+                                        <a class="btn btn-primary btn-sm" href="/Admin/Product/Edit/@Model[i].id">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary btn-sm" href="/Admin/Product/Delete/@Model[i].id"
+                                           onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary btn-sm" href="/Admin/Product/Detail/@Model[i].id">
+                                            <i class="fas fa-eye"> </i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div style="text-align:center">Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount</div>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions { MaximumPageNumbersToDisplay = 3 })
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <div class="product-status-wrap">
+            <div class="add-product">
+                <a href="/Admin/Product/Create">Tạo mới sản phẩm</a>
+            </div>
+        </div>
+        <!-- /.card -->
+    </section>
+    <!-- /.content -->
+</div>
+

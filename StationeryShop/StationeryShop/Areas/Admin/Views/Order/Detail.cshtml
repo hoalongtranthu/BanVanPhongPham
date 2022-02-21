@@ -1,0 +1,186 @@
+﻿@using StationeryShop.Models;
+@model order
+@{
+	ViewBag.Title = "Detail";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<div class="container-fluid d-flex justify-content-between">
+			<h1>Chi tiết đơn hàng @Model.id</h1>
+			<button class="btn btn-danger" onclick="confirmDelete()">
+				<i class="fas fa-trash"></i> Xóa
+			</button>
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+
+	<!-- Main content -->
+	<section class="content">
+		<!-- Default box -->
+		<div class="row">
+			<div class="col-xs-12 col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<h3 class="card-title">Hàng hóa</h3>
+
+						<div class="card-tools">
+							<button type="button"
+											class="btn btn-tool"
+											data-card-widget="collapse"
+											title="Collapse">
+								<i class="fas fa-minus"></i>
+							</button>
+							<button type="button"
+											class="btn btn-tool"
+											data-card-widget="remove"
+											title="Remove">
+								<i class="fas fa-times"></i>
+							</button>
+						</div>
+					</div>
+					<div class="card-body p-0">
+						<div class="table-responsive">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Sản phẩm</th>
+										<th>Số lượng</th>
+										<th>Đơn giá</th>
+										<th>Thành tiền</th>
+									</tr>
+								</thead>
+								<tbody>
+									@{ var prods = Model.order_details.ToList();}
+									@for (int i = 0; i < prods.Count; i++)
+									{
+										var p = prods[i];
+										<tr>
+											<td>@(i + 1)</td>
+											<td><a href="/Product/Detail/@p.prod_id">@p.product.name</a></td>
+											<td>@p.quantity</td>
+											<td>@p.price.ToString("n0")đ</td>
+											<td>@((p.price * p.quantity).ToString("n0"))đ</td>
+										</tr>
+									}
+								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="4">Tổng đơn</td>
+										<td>@Model.total.ToString("n0")đ</td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
+					<!-- /.card-body -->
+				</div>
+			</div>
+			<div class="col-xs-12 col-md-6">
+				<div class="card">
+					<div class="card-header">
+						<h3 class="card-title">Thông tin đơn hàng</h3>
+
+						<div class="card-tools">
+							<button type="button"
+											class="btn btn-tool"
+											data-card-widget="collapse"
+											title="Collapse">
+								<i class="fas fa-minus"></i>
+							</button>
+							<button type="button"
+											class="btn btn-tool"
+											data-card-widget="remove"
+											title="Remove">
+								<i class="fas fa-times"></i>
+							</button>
+						</div>
+					</div>
+					<div class="card-body p-0">
+						<table class="table table-striped">
+							<tr>
+								<th>Ngày đặt</th>
+								<td>@Model.order_date.ToShortDateString()</td>
+							</tr>
+							<tr>
+								<th>Yêu cầu</th>
+								<td>@Model.notes</td>
+							</tr>
+							<tr>
+								<th>Số điện thoại</th>
+								<td>@Model.tel</td>
+							</tr>
+							<tr>
+								<th>Địa chỉ</th>
+								<td>@Model.address</td>
+							</tr>
+							<tr>
+								<th>Họ tên</th>
+								<td>@Model.name</td>
+							</tr>
+							<tr>
+								<th>Trạng thái</th>
+								<td>
+									@Html.DropDownListFor(o => o.status, new SelectList(new List<string>() { order.Status.ACCEPTED, order.Status.CANCELED, order.Status.DELIVERED, order.Status.DELIVERING, order.Status.DENIED, order.Status.PENDING }, Model.status), new { @class = "custom-select" })
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="card-footer text-right">
+						<button class="btn btn-primary" onclick="updateStatus()">
+							<i class="fas fa-edit"></i> Cập nhật
+						</button>
+					</div>
+					<!-- /.card-body -->
+				</div>
+			</div>
+		</div>
+		<!-- /.card -->
+	</section>
+	<!-- /.content -->
+</div>
+
+@section scripts{
+	<script>
+		function confirmDelete() {
+			Swal.fire({
+				title: 'Bạn có muốn xóa đơn đặt hàng này?',
+				text: "Tất cả các dữ liệu liên quan sẽ bị xóa!",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Có',
+				cancelButtonText: "Không"
+			}).then((result) => {
+				if (result.isConfirmed) {
+					location.href = "/Admin/Order/Delete/@Model.id";
+				}
+			});
+		}
+		function updateStatus() {
+			const status = document.querySelector("#status").value;
+			$.post("/Admin/Order/UpdateStatus", { id:@Model.id, status }).done(() => {
+				Swal.mixin({
+					toast: true,
+					position: 'top-end',
+					showConfirmButton: false,
+					timer: 5000
+				}).fire({
+					icon: 'success',
+					title: ' Trạng thái đơn hàng được cập nhật'
+				});
+			}).fail(() => {
+				Swal.mixin({
+					toast: true,
+					position: 'top-end',
+					showConfirmButton: false,
+					timer: 5000
+				}).fire({
+					icon: 'error',
+					title: ' Cập nhật thất bại!'
+				});
+				});
+		}
+	</script>
+}

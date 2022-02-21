@@ -1,0 +1,11 @@
+﻿@model PagedList.IPagedList<StationeryShop.Models.product>
+@using PagedList.Mvc;
+@{
+	ViewBag.Title = "Danh mục " + ViewBag.catName;
+}
+<div class="bg-white p-3">
+	<h2 class="heading">@ViewBag.cat.name</h2>
+	<p>@ViewBag.cat.description</p>
+	@Html.Partial("_ProductList",Model)
+	@Html.PagedListPager(Model, page => Url.Action("Index", new { page}), new PagedListRenderOptions { MaximumPageNumbersToDisplay = 5 })
+</div>

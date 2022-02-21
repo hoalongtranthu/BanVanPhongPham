@@ -1,0 +1,23 @@
+﻿@model StationeryShop.Models.customer
+<div class="account-menu__avatar">
+	<span class="account-menu__avatar-img">
+		<img src="https://vuoncayviet.com/img/user2-160x160.jpg"
+				 alt="avatar"
+				 class="img-fluid" />
+	</span>
+	<strong>@Model.name</strong>
+</div>
+<ul class="account-menu__links">
+	<li>
+		<a href="/Account">Thông tin cá nhân</a>
+	</li>
+	<li>
+		<a href="/Account/ChangePass">Đổi mật khẩu</a>
+	</li>
+	<li>
+		<a href="/Account/Orders">Đơn hàng của tôi</a>
+	</li>
+	<li>
+		<a href="/Account/Logout">Đăng xuất</a>
+	</li>
+</ul>

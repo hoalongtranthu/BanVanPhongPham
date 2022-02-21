@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title</title>
+	<link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/Content/css/PagedList.css" />
+	<link rel="stylesheet" href="~/Content/css/style.css" />
+</head>
+<body>
+	<!-- Header -->
+	<div class="top-head">
+		<div class="container">
+			<div class="top-head__left">
+				<i class="bx bx-phone bx-sm"></i>Hotline:&nbsp;<strong>0393417020</strong>
+			</div>
+			<ul class="top-head__right">
+				@if (Session["userId"] != null)
+				{
+					<li>
+						<a href="/Account">
+							<i class="bx bxs-user-circle"></i> Tài Khoản
+						</a>
+					</li>
+					<li>
+						<a href="/Account/Logout"> <i class="bx bxs-exit"></i> Đăng Xuất </a>
+					</li>
+				}
+				else
+				{
+					<li class="top-head__login">
+						<a href="/Account/Login"><i class="bx bx-lock"></i> Đăng Nhập</a>
+					</li>
+					<li class="top-head__register">
+						<a href="/Account/Register"><i class="bx bx-user-plus"></i> Đăng Ký</a>
+					</li>
+				}
+				@if (Session["userId"] != null)
+				{
+					Html.RenderAction("CartCount", "Cart");
+				}
+			</ul>
+		</div>
+	</div>
+	<header>
+		<div class="container">
+			<div class="header__logo">
+				<a href="/">
+					<img src="~/Content/img/logo.png"
+							 alt="logo"
+							 class="img-fluid" />
+				</a>
+			</div>
+			<div class="header__search">
+				<form action="/Product/Search">
+					<div class="input-group">
+						<input type="text"
+									 class="form-control"
+									 name="q"
+									 placeholder="Tìm Kiếm" />
+						<button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</header>
+	<nav class="navbar navbar-expand-md">
+		<div class="container">
+			<button class="navbar-toggler align-items-center text-white d-flex d-md-none"
+							data-bs-toggle="collapse"
+							data-bs-target="#nav-menu">
+				<i class="bx bx-menu bx-md text-white"></i> Menu
+			</button>
+			<div class="collapse navbar-collapse" id="nav-menu">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="/">Trang chủ</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/Home/About">Giới Thiệu</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/Promotion/All">Khuyến mãi</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/Home/Contact">Liên Hệ</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/Home/Support">Hỗ Trợ</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/Home/Service">Dịch Vụ</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/Home/Policy">Chính sách</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/Home/FAQ">Câu hỏi thường gặp</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	@RenderBody()
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-md-6">
+					<h4>TRUY CẬP NHANH</h4>
+					<ul>
+						<li>
+							<a href="/intro">Giới Thiệu</a>
+						</li>
+						<li>
+							<a href="/service">Dịch Vụ</a>
+						</li>
+						<li>
+							<a href="/blog">Blog - Tin Tức</a>
+						</li>
+						<li>
+							<a href="/contact">Liên Hệ</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-12 col-md-6">
+					<h4>TÀI KHOẢN</h4>
+					<ul>
+						<li>
+							<strong>Ngân hàng Đông Á</strong> Số TK: 0103720160, PGD Tô Hiến
+							Thành, TP. HCM - Chủ Tài Khoản: Dương Công Đông.
+						</li>
+						<li>
+							<strong>Ngân hàng VietCombank</strong> Số TK: 042 100 385 5531 -
+							Chủ Tài Khoản: Nguyễn Thị Hồng Vân.
+						</li>
+						<li>
+							<strong>Ngân Hàng ACB</strong> Số TK:130230819 - Chủ TK: Dương
+							Công Đông
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="~/Content/js/bootstrap.min.js"></script>
+</body>
+</html>
